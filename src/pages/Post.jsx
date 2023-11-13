@@ -5,7 +5,7 @@ import Navbar from '../components/common/Navbar'
 
 function Post() {
     return (
-        <Box sx={{ backgroundColor: '#DDDDDD', height: '100vh', overflow: 'auto' }}>
+        <Box sx={{ minHeight: '100vh' }}>
             <Navbar />
             <Box sx={{ p: 3, mt: '10vh' }}>
                 <Typography variant='h3' >Stupid Cats</Typography>

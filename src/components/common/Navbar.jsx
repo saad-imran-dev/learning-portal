@@ -7,13 +7,15 @@ function Navbar() {
     return (
         <Paper sx={{
             height: '10vh',
-            width: '100vw',
+            width: '100%',
             display: 'flex',
             alignItems: 'center',
             gap: 3,
             px: 3,
-            position: 'fixed',
-            zIndex: 10
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 10,
         }} >
             <Typography sx={{ mr: 'auto' }}>Navbar</Typography>
             <Button color='primary' variant='contained' >
