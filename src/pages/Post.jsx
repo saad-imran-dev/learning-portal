@@ -1,12 +1,22 @@
 import React from 'react'
-import { Typography, Box } from '@mui/material'
+import { Typography, Box, Divider, Container, Paper } from '@mui/material'
 import Attachments from '../components/Post/Attachments'
+import Navbar from '../components/common/Navbar'
 
 function Post() {
     return (
-        <Box>
-            <Typography>Post</Typography>
-            <Attachments />
+        <Box sx={{ backgroundColor: '#DDDDDD', height: '100vh', overflow: 'auto' }}>
+            <Navbar />
+            <Box sx={{ p: 3, mt: '10vh' }}>
+                <Typography variant='h3' >Stupid Cats</Typography>
+                <Divider sx={{ my: 2 }} />
+                <Attachments />
+                <Paper sx={{ my: 5, p: 3, backgroundColor: 'white', borderRadius: 2 }} elevation={1} >
+                    <Typography>
+                        Some Content
+                    </Typography>
+                </Paper>
+            </Box>
         </Box>
     )
 }
