@@ -1,11 +1,10 @@
 import { Box } from '@mui/material';
 import React from 'react'
 import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
-import cv from '../../assets/Muhammad Saad resume.pdf'
 
 function MediaViewer({ source, closeDoc }) {
     const docs = [
-        { uri: cv }, // Local File
+        { uri: source }, // Local File
     ];
 
     function close(e) {
@@ -20,6 +19,7 @@ function MediaViewer({ source, closeDoc }) {
             id='outside-doc'
             sx={{
                 position: 'absolute',
+                zIndex: 20,
                 top: 0,
                 left: 0,
                 width: '100vw',
@@ -33,7 +33,7 @@ function MediaViewer({ source, closeDoc }) {
             <DocViewer
                 documents={docs}
                 pluginRenderers={DocViewerRenderers}
-                style={{ width: '75vw', height: '100vh', overflow: 'auto' }}
+                style={{ width: '60vw', height: '100vh', overflow: 'auto' }}
                 config={{
                     header: {
                         disableHeader: false,
