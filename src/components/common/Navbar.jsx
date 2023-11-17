@@ -2,6 +2,7 @@ import React from 'react'
 import { Avatar, Box, Button, Paper, Typography } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+// import {CreatePost} from "react-router-dom"
 
 function Navbar() {
     return (
@@ -18,9 +19,9 @@ function Navbar() {
             zIndex: 10,
         }} >
             <Typography sx={{ mr: 'auto' }}>Navbar</Typography>
-            <Button color='primary' variant='contained' >
+            <Button color='primary' variant='contained'>
                 <FontAwesomeIcon icon={faPlus} style={{ marginRight: '5px' }} />
-                create
+                Create Post
             </Button>
             <Avatar />
         </Paper>
