@@ -13,7 +13,10 @@ function Post() {
                 <Attachments />
                 <Paper sx={{ my: 5, p: 3, backgroundColor: 'white', borderRadius: 2 }} elevation={1} >
                     <Typography>
-                        Some Content
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim officiis quisquam maiores. Iure nihil exercitationem libero quasi adipisci omnis, placeat dolorem tempore blanditiis, repudiandae, magnam ex esse temporibus consequuntur! Neque dignissimos odio quasi, nihil itaque, distinctio, recusandae omnis iure labore tempora vitae nulla. Distinctio, incidunt molestias excepturi consequuntur quibusdam ab.
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim officiis quisquam maiores. Iure nihil exercitationem libero quasi adipisci omnis, placeat dolorem tempore blanditiis, repudiandae, magnam ex esse temporibus consequuntur! Neque dignissimos odio quasi, nihil itaque, distinctio, recusandae omnis iure labore tempora vitae nulla. Distinctio, incidunt molestias excepturi consequuntur quibusdam ab.
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim officiis quisquam maiores. Iure nihil exercitationem libero quasi adipisci omnis, placeat dolorem tempore blanditiis, repudiandae, magnam ex esse temporibus consequuntur! Neque dignissimos odio quasi, nihil itaque, distinctio, recusandae omnis iure labore tempora vitae nulla. Distinctio, incidunt molestias excepturi consequuntur quibusdam ab.
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim officiis quisquam maiores. Iure nihil exercitationem libero quasi adipisci omnis, placeat dolorem tempore blanditiis, repudiandae, magnam ex esse temporibus consequuntur! Neque dignissimos odio quasi, nihil itaque, distinctio, recusandae omnis iure labore tempora vitae nulla. Distinctio, incidunt molestias excepturi consequuntur quibusdam ab.
                     </Typography>
                 </Paper>
             </Box>
