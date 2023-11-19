@@ -1,12 +1,12 @@
-import {  } from 'react'
+import { React } from 'react'
 import { Typography } from '@mui/material'
 import './index.css'
-import Post from './pages/Post'
+import CreatePost from './pages/createPost'
 
 function App() {
   return (
     <>
-      <Post />
+      <CreatePost />
     </>
   )
 }
