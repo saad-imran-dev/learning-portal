@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import axios from "axios";
 import {
   Typography,
   Box,
@@ -19,15 +20,33 @@ import {
 import Navbar from "../components/common/Navbar";
 import UploadButton from "../components/common/UploadButton";
 
-
 function CreatePost() {
-  const [uploadStatus, setUploadStatus] = useState('');
+  const [uploadStatus, setUploadStatus] = useState("");
+  const [content, setContent] = useState("");
+  const [postId, setpostId] = useState("");
+  
 
-  const handleFileUpload = (file) => {
-    console.log(file);
-    // Here you can handle the uploaded file (e.g., send it to a server)
-    // After handling the file, you can update the upload status
-    setUploadStatus('File uploaded successfully!');
+  const handlePostClick = async () => {
+    try {
+      const response = await axios.post(
+        "https://localhost:7039/Post/CreatePost",
+        {
+          title: "IPT project",
+          content: content,
+          courseId: 0,
+        },
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEzIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoidGVhY2hlciIsImV4cCI6MTcwMDU3MDI5Nn0.-2wL2iWVe2gPyP8tpLyAp-emei3lVrSzejWKIMcDyDa8rHyDGJHuJ9_VhglMFa1rFR3lecRl2_fZcyMDb5jQJQ",
+          },
+        }
+      );
+      setpostId(response.body.postId);
+      console.log("Post created successfully!");
+    } catch (error) {
+      console.error("Failed to create post!", error);
+    }
   };
 
   return (
@@ -70,6 +89,7 @@ function CreatePost() {
               InputProps={{
                 style: { border: "none" },
               }}
+              onChange={(event) => setContent(event.target.value)}
             />
           </Box>
           <div
@@ -80,12 +100,16 @@ function CreatePost() {
             }}
           >
             <div>
-              <UploadButton icon={faImage} onFileUpload={handleFileUpload} />
-              <UploadButton icon={faYoutube} onFileUpload={handleFileUpload} />
-              <UploadButton icon={faAward} onFileUpload={handleFileUpload} />
-              <UploadButton icon={faChartColumn} onFileUpload={handleFileUpload} />
+              <UploadButton icon={faImage} postId={postId}/>
+              <UploadButton icon={faYoutube} postId={postId}/>
+              <UploadButton icon={faAward} postId={postId}/>
+              <UploadButton icon={faChartColumn} postId={postId}/>
             </div>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handlePostClick}
+            >
               Post
             </Button>
           </div>
