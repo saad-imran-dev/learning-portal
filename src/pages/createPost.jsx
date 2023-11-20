@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Typography,
   Box,
@@ -6,11 +6,30 @@ import {
   Container,
   Paper,
   TextField,
+  Button,
 } from "@mui/material";
-import Attachments from "../components/Post/Attachments";
+
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faImage,
+  faAward,
+  faChartColumn,
+} from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../components/common/Navbar";
+import UploadButton from "../components/common/UploadButton";
+
 
 function CreatePost() {
+  const [uploadStatus, setUploadStatus] = useState('');
+
+  const handleFileUpload = (file) => {
+    console.log(file);
+    // Here you can handle the uploaded file (e.g., send it to a server)
+    // After handling the file, you can update the upload status
+    setUploadStatus('File uploaded successfully!');
+  };
+
   return (
     <Box sx={{ minHeight: "100vh" }}>
       <Navbar />
@@ -39,7 +58,38 @@ function CreatePost() {
           }}
           elevation={1}
         >
-          <TextField label="Enter Text" variant="outlined" sx={{ml:-1.5,width:"680px", display:"flex", border:"none"}}></TextField>
+          <Box>
+            <TextField
+              id="outlined-multiline-static"
+              label="What do you want to talk about?"
+              multiline
+              rows={12}
+              defaultValue=""
+              variant="outlined"
+              fullWidth
+              InputProps={{
+                style: { border: "none" },
+              }}
+            />
+          </Box>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "10px",
+            }}
+          >
+            <div>
+              <UploadButton icon={faImage} onFileUpload={handleFileUpload} />
+              <UploadButton icon={faYoutube} onFileUpload={handleFileUpload} />
+              <UploadButton icon={faAward} onFileUpload={handleFileUpload} />
+              <UploadButton icon={faChartColumn} onFileUpload={handleFileUpload} />
+            </div>
+            <Button variant="contained" color="primary">
+              Post
+            </Button>
+          </div>
+          {uploadStatus && <p>{uploadStatus}</p>}
         </Paper>
       </Box>
     </Box>
