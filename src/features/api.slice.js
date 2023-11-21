@@ -16,7 +16,17 @@ export const appApi = createApi({
                 params: args.params
             }),
         }),
+        getPost: builder.query({
+            query: (args) => ({
+                url: `post/${args.id}`,
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${args.token}`,
+                },
+            }),
+        }),
     }),
 })
 
-export const { useGetAllPostsQuery } = appApi
+export const { useGetAllPostsQuery, useGetPostQuery } = appApi

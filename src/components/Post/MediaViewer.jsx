@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import React from 'react'
-import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
+import DocViewer, { DocViewerRenderers } from 'react-doc-viewer';
 
 function MediaViewer({ source, closeDoc }) {
     const docs = [
@@ -32,7 +32,7 @@ function MediaViewer({ source, closeDoc }) {
         >
             <DocViewer
                 documents={docs}
-                // pluginRenderers={DocViewerRenderers}
+                pluginRenderers={DocViewerRenderers}
                 style={{ width: '60vw', height: '100vh', overflow: 'auto', }}
                 config={{
                     header: {

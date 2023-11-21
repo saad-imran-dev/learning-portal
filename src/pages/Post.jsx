@@ -1,22 +1,32 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Typography, Box, Divider, Paper } from '@mui/material'
 import Attachments from '../components/Post/Attachments'
 import Navbar from '../components/common/Navbar'
-import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { useGetPostQuery } from '../features/api.slice'
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm' 
+
+const token = 'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjExIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoic3R1ZGVudCIsImV4cCI6MTcwMDY1NjMzMH0.w3ZQhl991Y7nJfrFPyZTsiNeP11b4WK8zJU-Z8ef3hiUoNJFELeIWoctSEZANitFk90HqCIHiXSTR45z0v0bqQ'
 
 function Post() {
-    const post = useSelector(state => state.post.post)
-    console.log(post)
+    const { id } = useParams()
+    const { data, refetch, isLoading, isError } = useGetPostQuery({ token: token, id })
+
+    if (isLoading) return <div>loading...</div>
+    if (isError) return <div>oh no, an error!</div>
 
     return (
         <Box sx={{ minHeight: '100vh' }}>
             <Navbar />
             <Box sx={{ p: 3, mt: '10vh' }}>
-                <Typography variant='h3' >{post?.title}</Typography>
+                <Typography variant='h3' >{data?.title}</Typography>
                 <Divider sx={{ my: 2 }} />
-                <Attachments attachments={post?.attachments} />
+                <Attachments attachments={data?.attachments} />
                 <Paper sx={{ my: 5, p: 3, backgroundColor: 'white', borderRadius: 2 }} elevation={1} >
-                    <Typography>{post?.content}</Typography>
+                    <Typography>
+                        <Markdown remarkPlugins={[remarkGfm]}>{data?.content}</Markdown>
+                    </Typography>
                 </Paper>
             </Box>
         </Box>
