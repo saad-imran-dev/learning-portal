@@ -2,8 +2,11 @@ import React from 'react'
 import { Avatar, Box, Button, Paper, Typography } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 
 function Navbar() {
+    const navigate = useNavigate()
+
     return (
         <Paper sx={{
             height: '10vh',
@@ -18,9 +21,11 @@ function Navbar() {
             zIndex: 10,
         }} >
             <Typography sx={{ mr: 'auto' }}>Navbar</Typography>
-            <Button color='primary' variant='contained' >
-                <FontAwesomeIcon icon={faPlus} style={{ marginRight: '5px' }} />
-                Create Post
+            <Button color='primary' variant='contained' onClick={() => navigate('/post/create')}
+                sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+            >
+                <FontAwesomeIcon icon={faPlus} size='lg' />
+                Create
             </Button>
             <Avatar />
         </Paper>

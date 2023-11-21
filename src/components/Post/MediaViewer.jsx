@@ -4,7 +4,7 @@ import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
 
 function MediaViewer({ source, closeDoc }) {
     const docs = [
-        { uri: source }, // Local File
+        { uri: source }, 
     ];
 
     function close(e) {
@@ -32,8 +32,8 @@ function MediaViewer({ source, closeDoc }) {
         >
             <DocViewer
                 documents={docs}
-                pluginRenderers={DocViewerRenderers}
-                style={{ width: '60vw', height: '100vh', overflow: 'auto' }}
+                // pluginRenderers={DocViewerRenderers}
+                style={{ width: '60vw', height: '100vh', overflow: 'auto', }}
                 config={{
                     header: {
                         disableHeader: false,
@@ -46,6 +46,15 @@ function MediaViewer({ source, closeDoc }) {
                         zoomJump: 0.2, // 0.1 as default,
                     },
                     pdfVerticalScrollByDefault: true, // false as default
+                }}
+                theme={{
+                    primary: "#90A4AE",
+                    secondary: "#ffffff",
+                    tertiary: "#CFD8DC",
+                    textPrimary: "#000000",
+                    textSecondary: "#5296d8",
+                    textTertiary: "#00000099",
+                    disableThemeScrollbar: false,
                 }}
             />
         </Box>
