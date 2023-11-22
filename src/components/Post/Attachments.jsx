@@ -1,17 +1,25 @@
-import React, { useState } from 'react'
-import { Box, Typography } from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import { Box } from '@mui/material'
 import VideoPlayer from './VideoPlayer'
 import Media from './Media'
 import MediaViewer from './MediaViewer'
-import cat from '../../assets/stupid.cat.mp4'
-import cv from '../../assets/Muhammad Saad resume.pdf'
-import txt from '../../assets/lab 9.txt'
 
-function Attachments() {
+function Attachments({ attachments }) {
+    const [video, setVideo] = useState('')
+
     const [doc, setDoc] = useState({
         show: false,
         uri: ''
     })
+
+    useEffect(() => {
+        for (let i = 0; i < attachments.length; i++) {
+            if (attachments[i].type.includes('video')) {
+                setVideo(attachments[i].path)
+                break
+            }
+        }
+    }, [])
 
     function showDoc(source) {
         setDoc(prevState => ({
@@ -30,12 +38,24 @@ function Attachments() {
 
     return (
         <Box>
-            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', py: 5 }}>
-                <VideoPlayer source={cat} />
+            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', py: video === '' ? 0 : 5 }}>
+                {video !== '' && <VideoPlayer source={video} />}
             </Box>
-            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 200px))', gap: 2 }}>
-                <Media name={'Muhammad Saad Resume.pdf'} source={cv} showDoc={showDoc} />
-                <Media name={'lab 9.txt'} source={txt}  showDoc={showDoc} />
+            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 200px)', gap: 2 }}>
+                {attachments.map(media => {
+                    if (media.path !== video) {
+                        return (
+                            <Media
+                                key={media.id}
+                                name={media.path.split('/').slice(-1)}
+                                source={media.path}
+                                showDoc={showDoc}
+                                setVideo={setVideo}
+                                type={media.type}
+                            />
+                        )
+                    }
+                })}
             </Box>
 
             {doc.show && <MediaViewer source={doc.uri} closeDoc={closeDoc} />}

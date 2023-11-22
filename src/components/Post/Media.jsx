@@ -3,7 +3,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile } from '@fortawesome/free-solid-svg-icons'
 
-function Media({ name, type, source, showDoc }) {
+function Media({ name, source, type, showDoc, setVideo }) {
     return (
         <Card
             sx={{
@@ -12,11 +12,16 @@ function Media({ name, type, source, showDoc }) {
                 p: 3,
                 pl: 0,
                 cursor: 'pointer',
-                // boxShadow: 2,
                 '&:active': { boxShadow: 0 }
             }}
             elevation={2}
-            onClick={() => showDoc(source)}
+            onClick={() => {
+                if (type.includes('video')) {
+                    setVideo(source)
+                } else {
+                    showDoc(source)
+                }
+            }}
         >
             <Box sx={{ width: 100, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Box sx={{ borderRadius: '100%', backgroundColor: '#dddddd' }}>
