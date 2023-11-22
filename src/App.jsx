@@ -3,7 +3,6 @@ import { Typography } from '@mui/material'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CreatePost from './pages/createPost.jsx';
 import Post from './pages/Post'
-import AllPosts from './pages/AllPosts.jsx';
 import './index.css'
 import './App.css'
 import Login from "./components/LoginPage/Login.jsx"

@@ -20,7 +20,7 @@ function Navbar() {
             left: 0,
             zIndex: 10,
         }} >
-            <Typography sx={{ mr: 'auto' }}>Navbar</Typography>
+            <Typography sx={{ mr: 'auto' }}>Educational App</Typography>
             <Button color='primary' variant='contained' onClick={() => navigate('/post/create')}
                 sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
             >
