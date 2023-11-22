@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import React from 'react'
-import DocViewer, { DocViewerRenderers } from 'react-doc-viewer';
+import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
 
 function MediaViewer({ source, closeDoc }) {
     const docs = [

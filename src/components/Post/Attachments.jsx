@@ -3,8 +3,14 @@ import { Box } from '@mui/material'
 import VideoPlayer from './VideoPlayer'
 import Media from './Media'
 import MediaViewer from './MediaViewer'
+import PdfViewer from '../PdfViewer/PdfViewer'
+import ImageViewer from '../ImageViewer/ImageViewer'
 
 function Attachments({ attachments }) {
+    const imageExt = ['jpeg', 'jpg', 'png', 'gif', 'tiff', 'raw']
+
+    const docExt = ['docx', 'doc', 'xlsx', 'pptx']
+
     const [video, setVideo] = useState('')
 
     const [doc, setDoc] = useState({
@@ -58,7 +64,15 @@ function Attachments({ attachments }) {
                 })}
             </Box>
 
-            {doc.show && <MediaViewer source={doc.uri} closeDoc={closeDoc} />}
+            {doc.show && docExt.includes(doc.uri.split('.').slice(-1)[0]) &&
+                <MediaViewer source={doc.uri} closeDoc={closeDoc} />
+            }
+
+            {doc.show && doc.uri.split('.').slice(-1) == 'pdf' && <PdfViewer source={doc.uri} closeDoc={closeDoc} />}
+
+            {doc.show && imageExt.includes(doc.uri.split('.').slice(-1)[0]) &&
+                <ImageViewer source={doc.uri} closeDoc={closeDoc} />
+            }
 
         </Box>
     )
