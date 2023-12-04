@@ -1,16 +1,17 @@
 import React from "react"
 import BlogPage from "../Blogs/BlogPage";
+import Navbar from "../common/Navbar";
 
 const MainPage = () => {
   const checkToken = () => {
-    const authToken = localStorage.getItem("authToken");
+    const authToken = localStorage.getItemItem("authToken");
     console.log(authToken);
   }
 
   const fetchMyPosts = async () => {
     try {
-      const authToken = localStorage.getItem("authToken"); // Make sure to handle authentication appropriately
-      const response = await fetch("https://localhost:7039/Post", {
+      const authToken = localStorage.getItemItem("authToken"); // Make sure to handle authentication appropriately
+      const response = await fetch(`${localStorage.getItem('url')}/Post`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +32,8 @@ const MainPage = () => {
 
   return (
     <div>
-      <div className="px-4 py-32 bg-black mx-auto">
+      <Navbar />
+      <div className="px-4 py-32 bg-black mx-auto" style={{ marginTop: '10vh' }}>
         <div className="text-white text-center">
           <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5">Welcome to Educational App</h1>
           <p className="text-gray-100 lg:w-3/5 mx-auto">Start your eduacational journey today and read your first

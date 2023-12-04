@@ -1,5 +1,4 @@
 import { React } from 'react'
-import { Typography } from '@mui/material'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CreatePost from './pages/createPost.jsx';
 import Post from './pages/Post'
@@ -11,6 +10,8 @@ import SignUp from "./components/SignUpPage/SignUp.jsx"
 
 
 function App() {
+  localStorage.setItem('url', 'https://portalproject.azurewebsites.net/')
+
   return (
     <Router>
       <Routes>

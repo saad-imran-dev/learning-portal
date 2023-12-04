@@ -11,7 +11,7 @@ const BlogPage = () => {
     // Pages CHANGE PAGE
     const [currentPage, setCurrentPage] = useState(1)
     const pageSize = 12 //blogs per page
-    
+
     //Category
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [activeCategory, setActiveCategory] = useState(null);
@@ -19,7 +19,7 @@ const BlogPage = () => {
     //server-dont-need-this
     // useEffect(()=> {
     //     async function fetchBlogs() {
-    //         let url = `http://localhost:5000/blogs?page=${currentPage}&limit=${pageSize}`;
+    //         let url = `${localStorage.getItem('url')}/blogs?page=${currentPage}&limit=${pageSize}`;
     //         //original url http://localhost:5000/blogs CHANGE PAGE
 
 
@@ -35,7 +35,7 @@ const BlogPage = () => {
 
     //     fetchBlogs()
 
-    
+
 
     //     //}, []) CHANGE PAGE
     // }, [currentPage, pageSize, selectedCategory])
@@ -44,8 +44,8 @@ const BlogPage = () => {
     useEffect(() => {
         async function fetchBlogs() {
             try {
-                const authToken = localStorage.getItem("authToken"); // Make sure to handle authentication appropriately
-                let url = `http://localhost:5000/blogs?page=${currentPage}&limit=${pageSize}`;
+                const authToken = localStorage.getItemItem("authToken"); // Make sure to handle authentication appropriately
+                let url = `${localStorage.getItem('url')}/blogs?page=${currentPage}&limit=${pageSize}`;
                 //original url http://localhost:5000/blogs CHANGE PAGE
 
 
@@ -54,7 +54,7 @@ const BlogPage = () => {
                     url += `&category=${selectedCategory}`;
                 }
 
-                const response = await fetch("https://localhost:7039/Post", {
+                const response = await fetch(`${localStorage.getItem('url')}/Post`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const BlogPage = () => {
                         ...blog,
                         category: [blog.teacherName, blog.courseName]
                     }));
-                
+
                     setBlogs(blogsWithCategory);
                 }
                 else {
@@ -80,14 +80,14 @@ const BlogPage = () => {
                 console.error("Error during API request:", error);
             }
 
-            
+
         };
 
         fetchBlogs()
 
         //}, []) CHANGE PAGE
     }, [currentPage, pageSize, selectedCategory])
-    
+
 
 
     //CHANGE PAGE
@@ -106,15 +106,15 @@ const BlogPage = () => {
         <div>
             {/* Category Section */}
             <div><CategorySelection onSelectCategory={handleCategoryChange} selectedCategory={selectedCategory}
-            activeCategory={activeCategory}/></div>
+                activeCategory={activeCategory} /></div>
 
             {/* Blog Cards */}
             {/* PAGE CHANGE */}
-            <div><BlogCards blogs={blogs} currentPage={currentPage} selectedCategory={selectedCategory} pageSize={pageSize} 
-            onSelectCategory={handleCategoryChange}   activeCategory={activeCategory}/></div>
+            <div><BlogCards blogs={blogs} currentPage={currentPage} selectedCategory={selectedCategory} pageSize={pageSize}
+                onSelectCategory={handleCategoryChange} activeCategory={activeCategory} /></div>
 
             {/* Next, Previous Page Section */}
-            <div><Pagination onPageChange={handlePageChange} blogs={blogs} currentPage={currentPage} pageSize={pageSize}/></div>
+            <div><Pagination onPageChange={handlePageChange} blogs={blogs} currentPage={currentPage} pageSize={pageSize} /></div>
 
         </div>
     )

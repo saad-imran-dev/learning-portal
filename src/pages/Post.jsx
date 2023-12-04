@@ -5,12 +5,12 @@ import Navbar from '../components/common/Navbar'
 import { useParams } from 'react-router-dom'
 import { useGetPostQuery } from '../features/api.slice'
 import Markdown from 'react-markdown'
-import remarkGfm from 'remark-gfm' 
+import remarkGfm from 'remark-gfm'
 import Loading from '../components/common/Loading'
 import Error from '../components/common/Error'
 
 function Post() {
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItemItem("authToken");
     const { id } = useParams()
     const { data, refetch, isLoading, isError } = useGetPostQuery({ token: token, id })
 

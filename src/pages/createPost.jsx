@@ -30,7 +30,7 @@ function CreatePost() {
     try {
       // First API call to create a post
       const response = await axios.post(
-        "https://localhost:7039/Post/CreatePost",
+        `${localStorage.getItem('url')}/Post/CreatePost`,
         {
           title: title,
           content: content,
@@ -38,8 +38,7 @@ function CreatePost() {
         },
         {
           headers: {
-            Authorization:
-              "bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE5IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoidGVhY2hlciIsImV4cCI6MTcwMDc0NzgyOX0.klVEeF_NkcaVJqZ514wsNryHg2WpBzdIJLE3uJvvgKxU7tuWYMcNY9z7haHo6NRpNAvCUa0wj9gDghV5qTuAfQ",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
           },
         }
       );
@@ -49,7 +48,7 @@ function CreatePost() {
       console.log(createdPostId);
       // Update postId using setPostId
       setPostId(response.data.postId);
-      console.log("Post id: ",postId);
+      console.log("Post id: ", postId);
       console.log("Post created successfully!");
 
       // Call the second API to upload files using the postId obtained from the first API response
@@ -58,12 +57,11 @@ function CreatePost() {
         formData.append("file", file);
 
         const uploadResponse = await axios.post(
-          `https://localhost:7039/Attachment/Store/${createdPostId}`,
+          `${localStorage.getItem('url')}/Attachment/Store/${createdPostId}`,
           formData,
           {
             headers: {
-              Authorization:
-                "bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjE5IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoidGVhY2hlciIsImV4cCI6MTcwMDc0NzgyOX0.klVEeF_NkcaVJqZ514wsNryHg2WpBzdIJLE3uJvvgKxU7tuWYMcNY9z7haHo6NRpNAvCUa0wj9gDghV5qTuAfQ",
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`
             },
           }
         );
@@ -115,16 +113,16 @@ function CreatePost() {
               variant="outlined"
               onChange={(event) => setTitle(event.target.value)}
               sx={{
-                width:"600px",
-                mr:"20px"
+                width: "600px",
+                mr: "20px"
               }}
             >
-              </TextField>
+            </TextField>
             <Select
               value={courseId}
               onChange={handleCourseSelection}
               displayEmpty
-              sx={{ ariaLabel: "Without label", mb: "20px", width:"265px" }}
+              sx={{ ariaLabel: "Without label", mb: "20px", width: "265px" }}
             >
               <MenuItem value="">
                 <em>Select Course</em>

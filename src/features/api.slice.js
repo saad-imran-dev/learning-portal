@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const appApi = createApi({
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://localhost:7039/',
+        baseUrl: 'https://portalproject.azurewebsites.net/',
     }),
     endpoints: (builder) => ({
         getAllPosts: builder.query({
