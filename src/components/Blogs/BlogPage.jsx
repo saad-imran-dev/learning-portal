@@ -44,7 +44,7 @@ const BlogPage = () => {
     useEffect(() => {
         async function fetchBlogs() {
             try {
-                const authToken = localStorage.getItemItem("authToken"); // Make sure to handle authentication appropriately
+                const authToken = localStorage.getItem("authToken"); // Make sure to handle authentication appropriately
                 let url = `${localStorage.getItem('url')}/blogs?page=${currentPage}&limit=${pageSize}`;
                 //original url http://localhost:5000/blogs CHANGE PAGE
 

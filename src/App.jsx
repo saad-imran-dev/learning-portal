@@ -10,7 +10,7 @@ import SignUp from "./components/SignUpPage/SignUp.jsx"
 
 
 function App() {
-  localStorage.setItem('url', 'https://portalproject.azurewebsites.net/')
+  localStorage.setItem('url', 'https://portalproject.azurewebsites.net')
 
   return (
     <Router>

@@ -10,7 +10,7 @@ import Loading from '../components/common/Loading'
 import Error from '../components/common/Error'
 
 function Post() {
-    const token = localStorage.getItemItem("authToken");
+    const token = localStorage.getItem("authToken");
     const { id } = useParams()
     const { data, refetch, isLoading, isError } = useGetPostQuery({ token: token, id })
 
