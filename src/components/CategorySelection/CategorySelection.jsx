@@ -17,12 +17,12 @@ const CategorySelection = ({ onSelectCategory, activeCategory }) => {
 
         // Make parallel requests to get courses and teachers with the Bearer token
         const [coursesResponse, teachersResponse] = await Promise.all([
-          fetch("https://localhost:7039/Post/GetCourses", {
+          fetch(`${localStorage.getItem('url')}/Post/GetCourses`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }),
-          fetch("https://localhost:7039/User/GetTeachers", {
+          fetch(`${localStorage.getItem('url')}/User/GetTeachers`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
