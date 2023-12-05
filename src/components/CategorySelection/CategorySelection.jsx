@@ -9,7 +9,7 @@ const CategorySelection = ({ onSelectCategory, activeCategory }) => {
     const fetchData = async () => {
       try {
         // Get the Bearer token from localStorage
-        const token = localStorage.getItemItem("authToken"); // Make sure to handle authentication appropriately
+        const token = localStorage.getItem("authToken"); // Make sure to handle authentication appropriately
         if (!token) {
           console.error("Token not found in localStorage");
           return;

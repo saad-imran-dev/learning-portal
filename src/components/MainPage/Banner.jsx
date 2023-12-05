@@ -4,13 +4,13 @@ import Navbar from "../common/Navbar";
 
 const MainPage = () => {
   const checkToken = () => {
-    const authToken = localStorage.getItemItem("authToken");
+    const authToken = localStorage.getItem("authToken");
     console.log(authToken);
   }
 
   const fetchMyPosts = async () => {
     try {
-      const authToken = localStorage.getItemItem("authToken"); // Make sure to handle authentication appropriately
+      const authToken = localStorage.getItem("authToken"); // Make sure to handle authentication appropriately
       const response = await fetch(`${localStorage.getItem('url')}/Post`, {
         method: "GET",
         headers: {
